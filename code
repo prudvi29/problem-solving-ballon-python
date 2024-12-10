@@ -1,0 +1,18 @@
+def findMinArrowShots(intervals):
+    if not intervals:
+        return 0
+
+    # Sort the intervals by their end points
+    intervals.sort(key=lambda x: x[1])
+
+    arrows = 1
+    last_arrow_position = intervals[0][1]  # Place the first arrow at the end of the first interval
+
+    for interval in intervals:
+        # If the current interval's start point is after the last arrow's position,
+        # it means we need to shoot a new arrow.
+        if interval[0] > last_arrow_position:
+            arrows += 1
+            last_arrow_position = interval[1]
+
+    return arrows
